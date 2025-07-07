@@ -1,4 +1,5 @@
 const http = require("http");
+const fs = require("fs");
 
 const Server = http.createServer((req, res) => {
   if (req.url === "/") {
@@ -19,6 +20,12 @@ const Server = http.createServer((req, res) => {
     res.write("</body>");
     res.write("</html>");
     return res.end();
+  }else if (req.url.toLowerCase() === "/submit-details" && req.method == "POST" ){
+    {
+      fs.writeFileSync('user.txt', 'Abhishek Sardar');
+      res.statusCode = 302;
+      res.setHeader("Location", "/");
+    }
   }
 
   // Handle other routes
