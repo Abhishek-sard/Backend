@@ -21,11 +21,19 @@ const Server = http.createServer((req, res) => {
     res.write("</html>");
     return res.end();
   }else if (req.url.toLowerCase() === "/submit-details" && req.method == "POST" ){
-    {
-      fs.writeFileSync('user.txt', 'Abhishek Sardar');
-      res.statusCode = 302;
-      res.setHeader("Location", "/");
-    }
+
+    const body = [];
+
+    req.on('data', chunk => {
+      console.log(chunk);
+      body.push(chunk);
+    })
+
+
+    req.on('end', () => {
+      const fullfill = Buffer.concat(body).toString();
+      console.log(fullfill);
+     
   }
 
   // Handle other routes
