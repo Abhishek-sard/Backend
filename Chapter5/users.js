@@ -21,10 +21,6 @@ const Server = http.createServer((req, res) => {
     res.write("</html>");
     return res.end();
   }else if (req.url.toLowerCase() === "/submit-details" && req.method == "POST" ){
-
-    req.on('data', chunk =>{
-      console.log(chunk);
-    });
     {
       fs.writeFileSync('user.txt', 'Abhishek Sardar');
       res.statusCode = 302;
