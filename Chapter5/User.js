@@ -1,5 +1,6 @@
 const http = require("http");
 const fs = require("fs");
+const { URLSearchParams } = require("url");
 
 const Server = http.createServer((req, res) => {
   if (req.url === "/") {
@@ -8,7 +9,7 @@ const Server = http.createServer((req, res) => {
     res.write("<head><title>Complete Coding</title></head>");
     res.write("<body>");
     res.write("<h1>Enter Your Details:</h1>");
-    res.write('<form method="POST" action="/submit-detailsd">');
+    res.write('<form method="POST" action="/submit-details">');
     res.write('<input type="text" name="name" placeholder="Name" required><br><br>');
     res.write('<input type="email" name="email" placeholder="Email" required><br><br>');
     res.write('<input type="radio" id="male" name="gender" value="male" required>');
@@ -31,9 +32,29 @@ const Server = http.createServer((req, res) => {
 
 
     req.on('end', () => {
-      const fullfill = Buffer.concat(body).toString();
-      console.log(fullfill);
-     
+      const fullBody = Buffer.concat(body).toString();
+      console.log(fullBody);
+
+      const params = new URLSearchParams(fullBody);
+      // const bodyObject = {};
+
+      // for (const [key, val] of params.entries()) {
+      //   bodyObject[key] = val;
+
+      // }
+      const bodyObject = Object.fromEntries(params);
+      console.log(bodyObject);
+      fs.writeFileSync('user.txt', JSON.stringify(bodyObject));
+
+
+      const parsedBody = new URLSearchParams(fullBody);
+      const name = parsedBody.get("name");
+      const email = parsedBody.get("email");
+      const gender = parsedBody.get("gender");
+      console.log(`Name: ${name}, Email: ${email}, Gender: ${gender}`);
+      res.writeHead(302, { Location: "/" });
+      return res.end();
+    });
   }
 
   // Handle other routes
