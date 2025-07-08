@@ -48,3 +48,4 @@ const server = http.createServer((req, res) => {
 server.listen(3000, () => {
   console.log("Server is running on address http://localhost:3000");
 });
+module.exports = server; // Export the server for testing or other purposes
