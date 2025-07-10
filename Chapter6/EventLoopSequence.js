@@ -1,9 +1,9 @@
 console.log('1. Start of script');
 
 //Microtask queue (promise)
-Promise.resolve().then {() =>
-    console.log('2. Microtask');
-}
+Promise.resolve().then(() =>
+    console.log('2. Microtask')
+);
 
 //Timer queue
 setTimeout(() => 
