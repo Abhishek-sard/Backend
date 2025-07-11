@@ -6,8 +6,9 @@ const LogicalError = require("./Logical");
 const Server = http.createServer((req, res) => {
   console.log(req.url, req.method);
   testingSyntax();
-    testingSyntax();
-    runtime();
+    // testingSyntax();
+    // runtime();
+    LogicalError();
 });
 
 const PORT = 3000;
