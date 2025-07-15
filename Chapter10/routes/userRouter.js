@@ -1,11 +1,11 @@
+//core module imports
+const path = require('path');
+
 const express = require('express');
 const router = express.Router();  // create router instance
 
 router.get("/", (req, res) => {
-    res.send(`
-        <h1>Welcome to Airbnb</h1>
-        <a href="/host/add-home">Add Home</a>
-    `);
+    res.sendFile(path.join(__dirname, '../views/home.html'));
 });
 
 module.exports = router;  // export router instance
