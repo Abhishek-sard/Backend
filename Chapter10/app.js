@@ -3,9 +3,19 @@ const express = require('express');
 
 const app = express();
 
-app.use((req, res, next) => {
+
+
+app.get("/",(req, res, next) => {
     console.log(req.url, req.method);
-    res.send("<h1>Welcome to airbhub </h1>")
+    res.send(`<h1>Welcome to airbhub </h1> 
+        <a href="/add-home">Add Home</a>`);
+});
+app.get("/add-home", (req, res, next) => {
+  res.send(`<h1>Add Home</h1>
+      <form action="/add-home" method="POST">
+          <input type="text" name="homeName" placeholder="Home Name" required>
+          <button type="submit">Add Home</button>
+      </form>`);
 });
 
 const PORT = 3000;
