@@ -1,0 +1,15 @@
+to install the express 
+- npm install express
+
+to run the server
+- node app.js
+
+to create a new route
+- app.get('/new-route', function(req, res){
+  res.send('This is a new route')});
+- app.listen(3000, function(){
+  console.log('Server started on port 3000');
+});
+
+to create a basic express server
+
