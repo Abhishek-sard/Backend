@@ -13,3 +13,10 @@ to create a new route
 
 to create a basic express server
 
+1. npm init -y
+2. npm install --save-dev nodemon
+
+// app.js
+const express = require('express');
+const app = express();
+
