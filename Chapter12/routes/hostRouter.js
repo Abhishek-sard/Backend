@@ -2,7 +2,7 @@ const path = require("path");
 const express = require("express");
 const hostRouter = express.Router();
 
-const rootDir = path.join(__dirname, "..");
+const rootDir = path.join(__dirname, "../views/home.html");
 
 hostRouter.get("/add-home", (req, res, next) => {
   res.sendFile(path.join(rootDir, "views", 'addHome.html'));
