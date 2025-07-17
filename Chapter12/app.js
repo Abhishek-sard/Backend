@@ -2,23 +2,26 @@ const path = require("path");
 const express = require("express");
 
 const userRouter = require("./routes/userRouter");
-const hostRouter = require("./routes/hostRouter");
+const {hostRouter} = require("./routes/hostRouter");
 const rootDir = require("./utils/pathUtil");
 
 const app = express();
+app.set('view engine', 'ejs');
+app.set('views', 'views');
+ app.use(express.static(path.join(rootDir, "public")));
 
-app.use(express.urlencoded({ extended: true }));
-
+app.use(express.urlencoded());
 app.use("/user", userRouter);
 app.use("/host", hostRouter);
 
 // Home page route
-app.get("/", (req, res) => {
-  res.sendFile(path.join(rootDir, "views", "home.html"));
+app.get("/", (req, res, next) => {
+  res.render("home", {title: "Home Page"});
 });
 
+
 // 404 Page
-app.use((req, res) => {
+app.use((req, res, next) => {
   res.status(404).sendFile(path.join(rootDir, "views", "404.html"));
 });
 
