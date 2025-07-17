@@ -19,3 +19,4 @@ hostRouter.post("/add-home", (req, res) => {
 
 exports.hostRouter = hostRouter;
 exports.registeredHomes = registeredHomes;
+
